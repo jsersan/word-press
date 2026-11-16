@@ -5,15 +5,10 @@
  */
 
 // Configuración
-$db_name = 'qapf794';
-$db_user = 'qapf794';
-$db_password = 'Jss12aozMfmk2556#';
-$db_host = 'qapf794.txemaserrano.com';
+
 
 // Nuevo usuario admin de emergencia
-$new_username = 'admin_emergency';
-$new_password = 'Emergency2026!';
-$new_email = 'admin@txemaserrano.com';
+
 
 // Conectar a la base de datos
 $conn = new mysqli($db_host, $db_user, $db_password, $db_name);
