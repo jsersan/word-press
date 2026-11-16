@@ -27,19 +27,19 @@
 
 // ** Database settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
-define( 'DB_NAME', 'qapf794' );
+define( 'DB_NAME', '' );
 
 /** Database username */
-define( 'DB_USER', 'qapf794' );
+define( 'DB_USER', '' );
 
 /** Database password */
-define( 'DB_PASSWORD', 'Jss12aozMfmk2556#' );
+define( 'DB_PASSWORD', '' );
 
 /** Database hostname */
-define( 'DB_HOST', 'qapf794.txemaserrano.com' );
+define( 'DB_HOST', '' );
 
 /** Database charset to use in creating database tables. */
-define( 'DB_CHARSET', 'utf8mb4' );
+define( 'DB_CHARSET', '' );
 
 /** The database collate type. Don't change this if in doubt. */
 define( 'DB_COLLATE', '' );
@@ -55,14 +55,14 @@ define( 'DB_COLLATE', '' );
  *
  * @since 2.6.0
  */
-define( 'AUTH_KEY',         '1TYO[aONHGtTKgod[v{G^AhAc}|QWfw1UWKSeaahuX,%%ouR2ZvFBG>t3!=Mj4sm' );
-define( 'SECURE_AUTH_KEY',  'l<thh-hJg1zE#6gQ6vQ:<G=pf(9K)b(#e}`UM!KC><9ZZb?VQ@G$eY~pCxB1KgE}' );
-define( 'LOGGED_IN_KEY',    'xmrH,1n;m-=a0q`oHl{ TI(Z;}$^PJQ5S@>Xk{t%ji8Rmqnk[t24R);z/KwXGt+V' );
-define( 'NONCE_KEY',        ',b24/[-Kk.ma]kPM<*XRAzoV<]$q<|(M5|%b[erJ~+4H9I=Jr&14On*.v(49L{xw' );
-define( 'AUTH_SALT',        'tQ<LjHi3oiU#~td0zoebgQy$zb~o+$s#2ry_{b&gJE6Z`(+MI,|1~6DCmgJQR)%w' );
-define( 'SECURE_AUTH_SALT', 'M#?,Ui }CR.*IFGV>zFoe? j4w^jpAg+=mn}THmd][&[k>06Lv}|G9VIfb++6.?z' );
-define( 'LOGGED_IN_SALT',   'G2&3%!H*0-FBKlmUmU$%qi|~o{OPCbCueB98Viwnvn0ez<Dk$rqQ{]=*LnI0HZa ' );
-define( 'NONCE_SALT',       '&@QT*60dq`ree-(PpM~Iiq6~JUA2IQn7e&b5zK36<p{5?u4)g4!Lf4]BdIZ,/tJV' );
+define( 'AUTH_KEY',         '' );
+define( 'SECURE_AUTH_KEY',  '' );
+define( 'LOGGED_IN_KEY',    '' );
+define( 'NONCE_KEY',        '' );
+define( 'AUTH_SALT',        '' );
+define( 'SECURE_AUTH_SALT', '' );
+define( 'LOGGED_IN_SALT',   '' );
+define( 'NONCE_SALT',       '' );
 
 /**#@-*/
 
