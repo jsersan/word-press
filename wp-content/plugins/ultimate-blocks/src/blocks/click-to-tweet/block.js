@@ -1,0 +1,227 @@
+//Import Icon
+import icon from "./icons/icon";
+import { useEffect } from "react";
+import { SpacingControl } from "../components";
+import GenericStyleControl, {
+	createStyleClipboard,
+} from "$Inc/components/GenericStyleControl";
+import metadata from "./block.json";
+import { __ } from "@wordpress/i18n";
+import { registerBlockType } from "@wordpress/blocks";
+import {
+	RichText,
+	InspectorControls,
+	PanelColorSettings,
+	useBlockProps,
+} from "@wordpress/block-editor";
+import { TextControl, RangeControl, PanelBody } from "@wordpress/components";
+import { useSelect } from "@wordpress/data";
+import { getParentBlock } from "../../common";
+import { generateStyles, getSpacingCss } from "../utils/styling-helpers";
+
+/**
+ * Register: aa Gutenberg Block.
+ *
+ * Registers a new block provided a unique name and an object defining its
+ * behavior. Once registered, the block is made editor as an option to any
+ * editor interface where blocks are implemented.
+ *
+ * @link https://wordpress.org/gutenberg/handbook/block-api/
+ * @param  {string}   name     Block name.
+ * @param  {Object}   settings Block settings.
+ * @return {?WPBlock}          The block, if it has been successfully
+ *                             registered; otherwise `undefined`.
+ */
+
+function ClickToTweet(props) {
+	const { isSelected, setAttributes, attributes } = props;
+
+	const {
+		ubTweet,
+		ubVia,
+		tweetFontSize,
+		tweetColor,
+		borderColor,
+		blockID,
+		padding,
+		margin,
+	} = attributes;
+
+	const { block, rootBlockClientId } = useSelect((select) => {
+		const { getBlock, getBlockRootClientId } =
+			select("core/block-editor") || select("core/editor");
+		const block = getBlock(props.clientId);
+		const rootBlockClientId = getBlockRootClientId(block.clientId);
+
+		return {
+			block,
+			rootBlockClientId,
+		};
+	});
+	useEffect(() => {
+		if (blockID === "") {
+			setAttributes({ blockID: block.clientId }); //setting attributes via props.attributes is not working here
+		}
+	}, []);
+	useEffect(() => {
+		const rootBlock = getParentBlock(rootBlockClientId, "core/block");
+		if (!rootBlock) {
+			setAttributes({ blockID: block.clientId });
+		}
+	}, [block?.clientId]);
+
+	const styleClipboard = createStyleClipboard(
+		"ub_click_to_tweet_copied_style",
+		["tweetFontSize", "tweetColor", "borderColor", "padding", "margin"],
+	);
+	const blockProps = useBlockProps();
+	const paddingObj = getSpacingCss(padding);
+	const marginObj = getSpacingCss(margin);
+	const clickToTweetStyles = {
+		borderColor: borderColor,
+		paddingTop: paddingObj?.top,
+		paddingRight: paddingObj?.right,
+		paddingBottom: paddingObj?.bottom,
+		paddingLeft: paddingObj?.left,
+		marginTop: marginObj?.top,
+		marginRight: marginObj?.right,
+		marginBottom: marginObj?.bottom,
+		marginLeft: marginObj?.left,
+	};
+	return (
+		<div {...blockProps}>
+			{isSelected && (
+				<>
+					<InspectorControls group="settings">
+						<PanelBody title={__("General")}>
+							<TextControl
+								label={__("X Username")}
+								placeholder="@"
+								value={ubVia}
+								onChange={(value) => setAttributes({ ubVia: value })}
+							/>
+						</PanelBody>
+					</InspectorControls>
+					<InspectorControls group="styles">
+						<PanelBody title={__("General")}>
+							<RangeControl
+								label={__("Font Size")}
+								value={tweetFontSize}
+								onChange={(value) => setAttributes({ tweetFontSize: value })}
+								min={10}
+								max={200}
+								beforeIcon="editor-textcolor"
+								allowReset
+							/>
+						</PanelBody>
+						<PanelBody title={__("Colors")} initialOpen={false}>
+							<PanelColorSettings
+								title={__("Color Scheme")}
+								initialOpen={false}
+								colorSettings={[
+									{
+										value: tweetColor,
+										onChange: (tweetColor) => setAttributes({ tweetColor }),
+										label: __("Tweet Color"),
+									},
+									{
+										value: borderColor,
+										onChange: (borderColor) => setAttributes({ borderColor }),
+										label: __("Border Color"),
+									},
+								]}
+							/>
+						</PanelBody>
+						<PanelBody
+							title={__("Dimension Settings", "ultimate-blocks")}
+							initialOpen={false}
+						>
+							<SpacingControl
+								showByDefault
+								attrKey="padding"
+								label={__("Padding", "ultimate-blocks")}
+							/>
+							<SpacingControl
+								minimumCustomValue={-Infinity}
+								showByDefault
+								attrKey="margin"
+								label={__("Margin", "ultimate-blocks")}
+							/>
+						</PanelBody>
+					</InspectorControls>
+				</>
+			)}
+			<GenericStyleControl
+				attributes={attributes}
+				setAttributes={setAttributes}
+				clipboard={styleClipboard}
+				blockName="Click to Tweet"
+			/>
+			<div className={props.className}>
+				<div
+					className="ub_click_to_tweet"
+					style={generateStyles(clickToTweetStyles)}
+				>
+					<RichText
+						style={{
+							fontSize: tweetFontSize + "px",
+							color: tweetColor || "inherit",
+						}}
+						placeholder={__("Add Content to Post on X", "ultimate-blocks")}
+						className="ub_tweet"
+						value={ubTweet}
+						onChange={(value) => setAttributes({ ubTweet: value })}
+					/>
+
+					<div className="ub_click_tweet">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="24"
+							height="24"
+							viewBox="0 0 512 512"
+						>
+							<path
+								fill="#171111"
+								d="M389.2 48h70.6L305.6 224.2L487 464H345L233.7 318.6L106.5 464H35.8l164.9-188.5L26.8 48h145.6l100.5 132.9zm-24.8 373.8h39.1L151.1 88h-42z"
+							/>
+						</svg>
+						{__("Post on X", "ultimate-blocks")}
+					</div>
+				</div>
+			</div>
+		</div>
+	);
+}
+
+registerBlockType(metadata.name, {
+	...metadata,
+	icon: icon,
+	attributes: metadata.attributes,
+	example: {
+		attributes: {
+			ubTweet:
+				"Ultimate Blocks helps you create better and engaging content with Gutenberg.",
+		},
+	},
+	/**
+	 * The edit function describes the structure of your block in the context of the editor.
+	 * This represents what the editor will render when the block is used.
+	 *
+	 * The "edit" property must be a valid function.
+	 *
+	 * @link https://wordpress.org/gutenberg/handbook/block-api/block-edit-save/
+	 */
+	edit: ClickToTweet,
+
+	/**
+	 * The save function defines the way in which the different attributes should be combined
+	 * into the final markup, which is then serialized by Gutenberg into post_content.
+	 *
+	 * The "save" property must be specified and must be a valid function.
+	 *
+	 * @link https://wordpress.org/gutenberg/handbook/block-api/block-edit-save/
+	 */
+	save() {
+		return null;
+	},
+});

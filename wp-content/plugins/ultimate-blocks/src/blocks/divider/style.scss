@@ -1,0 +1,37 @@
+/**
+ * #.# Styles
+ *
+ * CSS for both Frontend+Backend.
+ */
+
+.ub_divider {
+	display: flex;
+	margin-left: auto; //needed for proper alignment
+	margin-right: auto; //needed for proper alignment
+	align-content: center;
+	//begin overrides for twenty twenty-one
+	border-bottom: none;
+	//end overrides for twenty twenty-one
+
+	[data-divider-alignment="left"] {
+		margin-left: 0 !important;
+		margin-right: auto !important;
+	}
+
+	[data-divider-alignment="right"] {
+		margin-right: 0 !important;
+		margin-left: auto !important;
+	}
+	[data-divider-alignment="center"] {
+		margin-right: auto !important;
+		margin-left: auto !important;
+	}
+}
+
+.entry-content.entry-content .ub_divider {
+	&::before,
+	&::after {
+		content: none; //override twenty twenty
+	}
+	background-color: transparent; //override twenty nineteen, twenty seventeen
+}

@@ -1,0 +1,333 @@
+/**
+ * #.# Styles
+ *
+ * CSS for both Frontend+Backend.
+ */
+
+@import "../../common";
+
+@mixin tab-vertical-wrap {
+	border-top-left-radius: 5px;
+	padding: 10px 15px;
+	border-right: 0;
+	display: flex;
+	align-items: center;
+	position: relative;
+	cursor: pointer;
+	&.active {
+		color: #000000;
+	}
+}
+.wp-block-ub-tabbed-content {
+	margin-top: 30px;
+	margin-bottom: 30px;
+	.wp-block-ub-tabbed-content-tabs-content {
+		.wp-block-ub-tabbed-content-tab-content-wrap {
+			> .alignright {
+				float: right;
+				margin-inline-start: 2em;
+				margin-inline-end: 0;
+			}
+
+			> .alignleft {
+				float: left;
+				margin-inline-start: 0;
+				margin-inline-end: 2em;
+			}
+
+			> .aligncenter {
+				margin-inline-start: auto;
+				margin-inline-end: auto;
+			}
+		}
+	}
+
+	&:not(.wp-block-ub-tabbed-content-pills):not(
+			.wp-block-ub-tabbed-content-underline
+		):not(.ub-tabs-no-border) {
+		.wp-block-ub-tabbed-content-tabs-content {
+			border: 1px solid lightgrey;
+		}
+		.wp-block-ub-tabbed-content-tab-title-wrap,
+		.wp-block-ub-tabbed-content-tab-title-vertical-wrap {
+			border: 1px solid lightgrey;
+		}
+	}
+
+	&.wp-block-ub-tabbed-content-underline {
+		.wp-block-ub-tabbed-content-tab-title-wrap,
+		.wp-block-ub-tabbed-content-tab-title-vertical-wrap {
+			&.active {
+				border-bottom: 5px solid var(--ub-tabbed-active-title-color, #000000);
+			}
+		}
+	}
+	& .wp-block-ub-tabbed-content-tab-title-wrap,
+	.wp-block-ub-tabbed-content-tab-title-vertical-wrap {
+		background: var(--ub-tabbed-title-background-color);
+		color: var(--ub-tabbed-title-color);
+		&.active {
+			background: var(--ub-tabbed-active-title-background-color);
+			color: var(--ub-tabbed-active-title-color);
+		}
+	}
+
+	&-holder {
+		.blocks-rich-text__tinymce.mce-content-body {
+			font-size: 14px;
+		}
+		display: flex;
+		flex-direction: column;
+		&.vertical-holder {
+			flex-direction: row;
+		}
+	}
+	&-tab-holder {
+		position: relative;
+		&.vertical-tab-width {
+			position: relative;
+			width: 21%;
+		}
+	}
+	&-tabs-title {
+		display: flex;
+		overflow-x: auto;
+		&:hover,
+		&:focus {
+			overflow-x: auto;
+		}
+	}
+	&-tabs-title-vertical-tab {
+		@media (max-width: 699px) {
+			display: flex;
+			overflow-x: auto;
+			&:hover,
+			&:focus {
+				overflow-x: auto;
+			}
+		}
+	}
+	&-tabs-title,
+	&-tabs-title-vertical-tab {
+		&:hover,
+		&:focus {
+			overflow-x: auto;
+		}
+		@media (max-width: 699px) {
+			&.ub-mobile-hide {
+				display: none;
+			}
+		}
+		@media (min-width: 700px) and (max-width: 899px) {
+			&.ub-tablet-hide {
+				display: none;
+			}
+		}
+	}
+
+	&-tabs-content {
+		padding: 25px;
+		&.vertical-content-width {
+			width: 79%;
+		}
+	}
+	&:not(.wp-block-ub-tabbed-content-pills):not(
+			.wp-block-ub-tabbed-content-underline
+		):not(.ub-tabs-no-border) {
+		.wp-block-ub-tabbed-content-tab-title-wrap {
+			border-right: 1px solid lightgrey;
+		}
+	}
+	&-tab-title {
+		word-break: initial;
+		&-wrap {
+			border-top-right-radius: 5px;
+			border-top-left-radius: 5px;
+			padding: 10px 15px;
+			margin-right: 5px;
+			display: flex;
+			align-items: center;
+			position: relative;
+			cursor: pointer;
+			&.active {
+				color: white;
+			}
+		}
+		&-vertical-wrap {
+			@include tab-vertical-wrap();
+		}
+	}
+}
+
+@media (max-width: 699px) {
+	.ub-tabbed-content-mobile-accordion {
+		padding: 0;
+		border: none;
+		> .wp-block-ub-tabbed-content-tab-content-wrap {
+			border: 1px solid lightgray;
+			padding: 20px;
+			&.active {
+				border-color: darkgray;
+			}
+		}
+	}
+	.wp-block-ub-tabbed-content {
+		&-tab-title-mobile-vertical-wrap {
+			@include tab-vertical-wrap();
+		}
+		&-tabs-content {
+			&.vertical-content-width-mobile {
+				width: 79%;
+			}
+			&.horizontal-content-width-mobile {
+				width: 100;
+			}
+		}
+		&-tab-holder {
+			&.vertical-tab-width-mobile {
+				width: 21%;
+			}
+			&.horizontal-tab-width-mobile {
+				width: 100%;
+			}
+		}
+		&-tabs-title-mobile {
+			&-vertical-tab {
+				display: initial;
+				.wp-block-ub-tabbed-content-tab-title-tablet-vertical-wrap {
+					border-bottom: 1px solid #d3d3d3;
+				}
+			}
+			&-horizontal-tab {
+				display: flex;
+				.wp-block-ub-tabbed-content-tab-title-vertical-wrap {
+					border-right: 1px solid #d3d3d3;
+				}
+			}
+		}
+		&-holder.wp-block-ub-tabbed-content {
+			&-horizontal-holder-mobile {
+				display: block;
+				> .wp-block-ub-tabbed-content-tabs-content {
+					width: 100%;
+				}
+			}
+			&-vertical-holder-mobile {
+				display: flex;
+			}
+		}
+	}
+}
+@media (min-width: 700px) and (max-width: 899px) {
+	.ub-tabbed-content-tablet-accordion {
+		padding: 0;
+		border: none;
+		> .wp-block-ub-tabbed-content-tab-content-wrap {
+			border: 1px solid lightgray;
+			padding: 20px;
+			&.active {
+				border-color: darkgray;
+			}
+		}
+	}
+	.wp-block-ub-tabbed-content {
+		&-tab-title-tablet-vertical-wrap {
+			@include tab-vertical-wrap();
+		}
+		&-tabs-content {
+			&.vertical-content-width-tablet {
+				width: 79%;
+			}
+			&.horizontal-content-width-tablet {
+				width: 100%;
+			}
+		}
+		&-tab-holder {
+			&.vertical-tab-width-tablet {
+				width: 21%;
+			}
+			&.horizontal-tab-width-tablet {
+				width: 100%;
+			}
+		}
+		&-tabs-title-tablet {
+			&-vertical-tab {
+				display: initial;
+				.wp-block-ub-tabbed-content-tab-title-tablet-vertical-wrap {
+					border-bottom: 1px solid #d3d3d3;
+				}
+			}
+			&-horizontal-tab {
+				display: flex;
+				.wp-block-ub-tabbed-content-tab-title-vertical-wrap {
+					border-right: 1px solid #d3d3d3;
+				}
+			}
+		}
+		&-holder.wp-block-ub-tabbed-content {
+			&-horizontal-holder-tablet {
+				display: block;
+				> .wp-block-ub-tabbed-content-tabs-content {
+					width: 100%;
+				}
+			}
+			&-vertical-holder-tablet {
+				display: flex;
+			}
+		}
+	}
+}
+
+// "Show Border" off: no borders on tab buttons, content or the mobile accordion.
+// The underline style's active indicator stays, it is the style itself.
+.wp-block-ub-tabbed-content-holder.ub-tabs-no-border {
+	.wp-block-ub-tabbed-content-tab-title-wrap,
+	.wp-block-ub-tabbed-content-tab-title-vertical-wrap,
+	.wp-block-ub-tabbed-content-tabs-content,
+	.wp-block-ub-tabbed-content-accordion-toggle,
+	.wp-block-ub-tabbed-content-tab-content-wrap {
+		border: none;
+	}
+}
+
+.wp-block-ub-tabbed-content-accordion-toggle {
+	border: 1px solid lightgray;
+	padding: 10px 15px;
+	display: none;
+	background-color: var(--ub-tabbed-accordion-background-color);
+	color: var(--ub-tabbed-accordion-color);
+
+	&.active {
+		background-color: var(--ub-tabbed-active-accordion-background-color);
+		color: var(--ub-tabbed-active-accordion-color);
+		border-bottom: none;
+	}
+	@media (max-width: 699px) {
+		&.ub-mobile-display {
+			display: block;
+		}
+	}
+
+	@media (min-width: 700px) and (max-width: 899px) {
+		&.ub-tablet-display {
+			display: block;
+		}
+	}
+}
+
+@media (max-width: 374.98px) {
+	.wp-block-ub-tabbed-content {
+		&-tab-title-wrap {
+			padding: 10px 5px;
+		}
+		&-tabs-content {
+			padding: 10px;
+			p {
+				margin: 0 0 10px 0;
+			}
+		}
+		&-scroll-button-container > button {
+			top: -30px;
+		}
+	}
+}
