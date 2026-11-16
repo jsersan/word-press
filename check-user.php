@@ -2,8 +2,8 @@
 require_once('wp-load.php');
 
 $creds = array(
-    'user_login'    => 'jsersan',
-    'user_password' => 'Jss12aoz',
+    'user_login'    => '',
+    'user_password' => '',
     'remember'      => true
 );
 
