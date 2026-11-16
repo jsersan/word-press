@@ -13,8 +13,8 @@ require_once('wp-load.php');
 require_once('wp-admin/includes/admin.php');
 
 // Credenciales
-$username = 'jsersan';
-$password = 'Jss12aoz';
+$username = '';
+$password = '';
 
 // Verificar credenciales
 $user = get_user_by('login', $username);
