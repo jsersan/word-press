@@ -3,7 +3,7 @@ require_once('wp-load.php');
 require_once('wp-includes/pluggable.php');
 
 $user_id = 1; // ID de tu usuario jsersan
-$new_password = 'Jss12aoz';
+$new_password = '';
 
 wp_set_password($new_password, $user_id);
 
