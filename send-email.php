@@ -18,9 +18,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 header('Content-Type: application/json');
 
 // Configuración - CAMBIA ESTOS VALORES
-define('RESEND_API_KEY', '3dde2cba-2f9b-486a-bcab-231591522ce6'); // ⚠️ TU API KEY DE RESEND
-define('DESTINATION_EMAIL', 'jsersan@gmail.com');
-define('FROM_EMAIL', 'onboarding@resend.dev');
+define('RESEND_API_KEY', ''); // ⚠️ TU API KEY DE RESEND
+define('DESTINATION_EMAIL', '');
+define('FROM_EMAIL', '');
 
 // Log para debugging (borrar después)
 error_log('send-email.php llamado - Method: ' . $_SERVER['REQUEST_METHOD']);
